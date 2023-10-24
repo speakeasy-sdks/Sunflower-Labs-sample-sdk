@@ -1,0 +1,1058 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+        "title": "Sunflower Labs REST API",
+        "description": "REST Bridge provides a REST API to the Sunflower Labs Home Awareness system.",
+        "contact": {
+            "email": "andrej@sunflower-labs.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.4.0"
+    },
+    "servers": [
+        {
+            "url": "https://api.sunflower-labs.com",
+            "description": "Sunflower Labs API"
+        },
+        {
+            "url": "https://api.dev.sunflower-labs.com",
+            "description": "Sunflower Labs Development API"
+        }
+    ],
+    "paths": {
+        "/auth/token": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Request an authorization token",
+                "description": "Request a token for use in API calls. The hive ID and the API key must be specified in the body.",
+                "operationId": "authToken",
+                "parameters": [
+                    {
+                        "name": "valid_for_seconds",
+                        "in": "query",
+                        "description": "Lifetime of the requested token in seconds",
+                        "schema": {
+                            "type": "number",
+                            "example": "3600"
+                        }
+                    }
+                ],   
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "required": [
+                                    "hiveId",
+                                    "apiKey"
+                                ],
+                                "properties": {
+                                    "hiveId": {
+                                        "type": "string"
+                                    },
+                                    "apiKey": {
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "example": {
+                                "hiveId": "HIVE12",
+                                "apiKey": "d424b29f13ea48d2ad0a7c2429b3e682"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "token": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJoaXZlcyI6WyJISVZFMTciXSwic3ViIjoiYXBpdXNlciIsImV4cCI6MTY0NTUyMzYwNC40MzUsInJvbGVzIjpbXSwiaWF0IjoxNjQ0OTE4ODA0fQ.GNgZ4cgE2XFxWOnELYA4dqAadlYs4zRE9ZYhZpoo9xQ", 
+                                    "exp": 1649074617.388,
+                                    "expIso": "2022-04-04T12:16:57.388Z",
+                                    "hiveId": "HIVE12"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/403"
+                    }
+                },
+                "security": [{}]
+            }
+        },
+        "/api/v1/{hiveId}/hive/roof": {
+            "post": {
+                "tags": [
+                    "Hive"
+                ],
+                "summary": "Manual control for the Hive roof",
+                "description": "Manually open/close/stop the Hive roof. Not required for normal operations.",
+                "operationId": "hiveRoofControl",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/hiveParam"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "required": [
+                                    "action"
+                                ],
+                                "properties": {
+                                    "action": {
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "open" : {
+                                    "summary": "Open the Hive roof",
+                                    "value": {
+                                        "action": "open"
+                                    }
+                                },
+                                "close" : {
+                                    "summary": "Close the Hive roof",
+                                    "value": {
+                                        "action": "close"
+                                    }
+                                },
+                                "stop" : {
+                                    "summary": "Stop the Hive roof",
+                                    "value": {
+                                        "action": "stop"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/200"
+                    },
+                    "400": {
+                        "description": "Invalid action or direction"
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404"
+                    }
+                }
+            }
+        },
+        "/api/v1/{hiveId}/hive/roof/status": {
+            "get": {
+                "tags": [
+                    "Hive"
+                ],
+                "summary": "Get status of the Hive roof",
+                "description": "Request the Hive roof status. The status may be one of the following: stopped, open, closed, error, opening, closing, unknown",
+                "operationId": "hiveRoofStatus",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/hiveParam"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "result": "open"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404"
+                    }
+                }
+            }
+        },
+        "/api/v1/{hiveId}/target/position": {
+            "post": {
+                "tags": [
+                    "Target"
+                ],
+                "summary": "Set a dynamic target",
+                "description": "Set or update the position of a dynamic target. Please be aware of the default timeout 60s (if timeout is not specified). A target must be within the operational geofence. If the altitude is not specified, the target is assumed to be on top of the 3D mesh at the given latitude and longitude. A target will be ignored if the given time or position is invalid.",
+                "operationId": "targetPosition",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/hiveParam"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "required": [
+                                    "id",
+                                    "active"
+                                ],
+                                "properties": {
+                                    "id": {
+                                        "type": "string"
+                                    },
+                                    "active": {
+                                        "type": "boolean"
+                                    },
+                                    "time": {
+                                        "type": "string",
+                                        "format": "date-time",
+                                        "example": "2017-07-21T17:32:28Z"
+                                    },
+                                    "timeout": {
+                                        "type": "number"
+                                    },
+                                    "position": {
+                                        "type": "object",
+                                        "required": [
+                                            "latitude",
+                                            "longitude"
+                                        ],
+                                        "properties": {
+                                            "latitude": {
+                                                "type": "number"
+                                            },
+                                            "longitude": {
+                                                "type": "number"
+                                            },
+                                            "altitude": {
+                                                "type": "number"
+                                            },
+                                            "accuracy": {
+                                                "type": "number"
+                                            }                                            
+                                        }
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "activeTarget" : {
+                                    "summary": "Set/update an active target", 
+                                    "value": {
+                                        "id": "Target A",
+                                        "active": true,
+                                        "position": {
+                                            "latitude": 47.234,
+                                            "longitude": 8.476,
+                                            "accuracy": 10
+                                        },
+                                        "time": "2017-07-21T17:32:28Z",
+                                        "timeout": 60
+                                    }
+                                },
+                                "inactiveTarget" : {
+                                    "summary": "Set/update an inactive target", 
+                                    "value": {
+                                        "id": "Target A",
+                                        "active": false,
+                                        "time": "2017-07-21T17:32:28Z"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/200"
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404"
+                    }
+                }
+            }
+        },
+        "/api/v1/{hiveId}/bee/inspect": {
+            "post": {
+                "tags": [
+                    "Bee"
+                ],
+                "summary": "Deploy the Bee to inspect a specific observation zone (OZ)",
+                "description": "<p>Send the Bee on an inspection of a predefined observation zone (OZ).</p><p>Please send GET requests to retrieve flight advisory and weather condition before sending this command. If flight advisory is unknown or nogo, the flight_advisory_overridden has to be set in order to acknowledge that you want to proceed anyway. Otherwise, the command will be rejected. Similarly, if weather condition is unknown or nogo, the weather_overridden has to be set.</p>",
+                "operationId": "beeInspect",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/hiveParam"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "required": [
+                                    "oz_id"
+                                ],
+                                "properties": {
+                                    "oz_id": {
+                                        "type": "string"
+                                    },
+                                    "flight_advisory_overridden": {
+                                        "type": "boolean"
+                                    },
+                                    "weather_overridden": {
+                                        "type": "boolean"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "noOverride" : {
+                                    "summary": "Inspect a predefined observation zone without override", 
+                                    "value": {
+                                        "oz_id": "a65f8140-99d8-401e-9d4f-063b63ead563"
+                                    }
+                                },
+                                "withOverride" : {
+                                    "summary": "Inspect a predefined observation zone with overriding flight restriction", 
+                                    "value": {
+                                        "oz_id": "a65f8140-99d8-401e-9d4f-063b63ead563",
+                                        "flight_advisory_overridden": true,
+                                        "weather_overridden": false
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/200"
+                    },
+                    "400": {
+                        "description": "Invalid oz_id"
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404"
+                    }
+                }
+            }
+        },
+        "/api/v1/{hiveId}/bee/sweep": {
+            "post": {
+                "tags": [
+                    "Bee"
+                ],
+                "summary": "Deploy the Bee to perform a sweep",
+                "description": "<p>Send the Bee on a predefined sequence of observations (aka sweep).</p><p>Please send GET requests to retrieve flight advisory and weather condition before sending this command. If flight advisory is unknown or nogo, the flight_advisory_overridden has to be set in order to acknowledge that you want to proceed anyway. Otherwise, the command will be rejected. Similarly, if weather condition is unknown or nogo, the weather_overridden has to be set.</p>",
+                "operationId": "beeSweep",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/hiveParam"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "required": [
+                                    "sweep_id"
+                                ],
+                                "properties": {
+                                    "sweep_id": {
+                                        "type": "string"
+                                    },
+                                    "flight_advisory_overridden": {
+                                        "type": "boolean"
+                                    },
+                                    "weather_overridden": {
+                                        "type": "boolean"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "noOverride" : {
+                                    "summary": "Do a predefined sweep without override",
+                                    "value": {
+                                        "sweep_id": "71b0a9d6-635a-40ac-9b72-b8eccc9b3496"
+                                    }
+                                },
+                                "withOverride" : {
+                                    "summary": "Do a predefined sweep with overriding flight restriction",
+                                    "value": {
+                                        "sweep_id": "71b0a9d6-635a-40ac-9b72-b8eccc9b3496",
+                                        "flight_advisory_overridden": true,
+                                        "weather_overridden": false
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/200"
+                    },
+                    "400": {
+                        "description": "Invalid sweep_id"
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404"
+                    }
+                }
+            }
+        },
+        "/api/v1/{hiveId}/bee/follow": {
+            "post": {
+                "tags": [
+                    "Bee"
+                ],
+                "summary": "Deploy the Bee to follow a target",
+                "description": "<p>Send the Bee to follow a target. A target needs to exist before this can be used.</p><p>Please send GET requests to retrieve flight advisory and weather condition before sending this command. If flight advisory is unknown or nogo, the flight_advisory_overridden has to be set in order to acknowledge that you want to proceed anyway. Otherwise, the command will be rejected. Similarly, if weather condition is unknown or nogo, the weather_overridden has to be set.</p>",
+                "operationId": "beeFollow",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/hiveParam"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "required": [
+                                    "target_id"
+                                ],
+                                "properties": {
+                                    "target_id": {
+                                        "type": "string"
+                                    },
+                                    "flight_advisory_overridden": {
+                                        "type": "boolean"
+                                    },
+                                    "weather_overridden": {
+                                        "type": "boolean"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "noOverride" : {
+                                    "summary": "Follow a predefined target without override",
+                                    "value": {
+                                        "target_id": "Target A"
+                                    }
+                                },
+                                "withOverride" : {
+                                    "summary": "Follow a predefined target with overriding flight restriction",
+                                    "value": {
+                                        "target_id": "Target A",
+                                        "flight_advisory_overridden": true,
+                                        "weather_overridden": false
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/200"
+                    },
+                    "400": {
+                        "description": "Invalid target_id"
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404"
+                    }
+                }
+            }
+        },
+        "/api/v1/{hiveId}/bee/land": {
+            "post": {
+                "tags": [
+                    "Bee"
+                ],
+                "summary": "Bee returns to the Hive",
+                "description": "Command the Bee to return to the Hive.",
+                "operationId": "beeLand",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/hiveParam"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object"
+                            },
+                            "example": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/200"
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404"
+                    }
+                }
+            }
+        },
+        "/api/v1/{hiveId}/bee/land_here": {
+            "post": {
+                "tags": [
+                    "Bee"
+                ],
+                "summary": "Bee lands in place (Emergency Procedure)",
+                "description": "Command the Bee to descend and land at the current location. This should only be used in an emergency.",
+                "operationId": "beeLandHere",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/hiveParam"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object"
+                            },
+                            "example": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/200"
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404"
+                    }
+                }
+            }
+        },
+        "/api/v1/{hiveId}/bee/kill": {
+            "post": {
+                "tags": [
+                    "Bee"
+                ],
+                "summary": "Shut down power to motors (Emergency Procedure)",
+                "description": "Command the Bee to kill the power to the motors. It will fall out of the sky. This should only be used in an emergency.",
+                "operationId": "beeKill",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/hiveParam"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object"
+                            },
+                            "example": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/200"
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404"
+                    }
+                }
+            }
+        },
+        "/api/v1/{hiveId}/bee/ptz": {
+            "post": {
+                "tags": [
+                    "Bee"
+                ],
+                "summary": "Bee camera controls",
+                "description": "<p>Control the pan, position, or zoom of the camera.</p><p>Please send GET requests to retrieve flight advisory and weather condition before sending this command (except pan left/right). If flight advisory is unknown or nogo, the flight_advisory_overridden has to be set in order to acknowledge that you want to proceed anyway. Otherwise, the command will be rejected. Similarly, if weather condition is unknown or nogo, the weather_overridden has to be set.</p>",
+                "operationId": "beePTZ",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/hiveParam"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "required": [
+                                    "action",
+                                    "direction"
+                                ],
+                                "properties": {
+                                    "action": {
+                                        "type": "string"
+                                    },
+                                    "direction": {
+                                        "type": "string"
+                                    },
+                                    "flight_advisory_overridden": {
+                                        "type": "boolean"
+                                    },
+                                    "weather_overridden": {
+                                        "type": "boolean"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "panLeft" : {
+                                    "summary": "Pan left",
+                                    "value": {
+                                        "action": "pan",
+                                        "direction": "left"
+                                    }
+                                },
+                                "tiltUp" : {
+                                    "summary": "Move up with overriding flight restriction",
+                                    "value": {
+                                        "action": "tilt",
+                                        "direction": "up",
+                                        "flight_advisory_overridden": true,
+                                        "weather_overridden": false
+                                    }
+                                },
+                                "zoomIn" : {
+                                    "summary": "Zoom in with overriding weather condition",
+                                    "value": {
+                                        "action": "zoom",
+                                        "direction": "in",
+                                        "flight_advisory_overridden": false,
+                                        "weather_overridden": true
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/200"
+                    },
+                    "400": {
+                        "description": "Invalid action or direction"
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404"
+                    }
+                }
+            }
+        },
+        "/api/v1/{hiveId}/bee/status": {
+            "get": {
+                "tags": [
+                    "Bee"
+                ],
+                "summary": "Bee Status",
+                "description": "Request the Bee status. The status may be one of the following: landed_in_hive, landed_outside, take_off, on_inspection, on_sweep, paused, returning, returning_fallback, landing, landing_fallback, killed, calibrating, error, hopping, unknown",
+                "operationId": "beeStatus",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/hiveParam"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "result": "landed_in_hive"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404"
+                    }
+                }
+            }
+        },
+        "/api/v1/{hiveId}/bee/position": {
+            "get": {
+                "tags": [
+                    "Bee"
+                ],
+                "summary": "Bee Position",
+                "description": "Request the Bee position. lat and lon are the latitude and longitude of the position on WGS 84, alt is the height of the position on AMSL.",
+                "operationId": "beePosition",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/hiveParam"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "result": {
+                                        "lat": 47.234,
+                                        "lon": 8.476,
+                                        "alt": 510.68,
+                                        "heading": 227.78,
+                                        "fix_type": 4,
+                                        "eph": 0.5899999737739563,
+                                        "epv": 1.0299999713897705,
+                                        "satellites": 26
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404"
+                    }
+                }
+            }
+        },
+        "/api/v1/{hiveId}/config/map_definition/observation_zones": {
+            "get": {
+                "tags": [
+                    "Map"
+                ],
+                "summary": "Observation Zones",
+                "description": "Request a list of available observation zones",
+                "operationId": "getOZs",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/hiveParam"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "result": {
+                                        "a65f8140-99d8-401e-9d4f-063b63ead563": {
+                                            "name": "Front Door",
+                                            "location_x": 1.03,
+                                            "location_y": -3.40,
+                                            "location_z": 1.26,
+                                            "location_heading": -10,
+                                            "location_x_on_map": 124.85,
+                                            "location_y_on_map": 184.25,
+                                            "location_heading_on_map": 10,
+                                            "location_lat": 40.4822468143661,
+                                            "location_lon": -79.80505717088697
+                                        },
+                                        "1dcd4e96-15e0-47a6-947a-897569e59fe5": {
+                                            "name": "Back Door",
+                                            "location_x": 10.3,
+                                            "location_y": -34,
+                                            "location_z": 12.6,
+                                            "location_heading": -20,
+                                            "location_x_on_map": 169.60,
+                                            "location_y_on_map": 184.25,
+                                            "location_heading_on_map": 10,
+                                            "location_lat": 40.4822468143661,
+                                            "location_lon": -79.80505717088697
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404"
+                    }
+                }
+            }
+        },
+        "/api/v1/{hiveId}/config/map_definition/sweeps": {
+          "get": {
+            "tags": [
+              "Map"
+            ],
+            "summary": "Sweeps",
+            "description": "Request a list of available sweeps",
+            "operationId": "getSweeps",
+            "parameters": [
+                {
+                    "$ref": "#/components/parameters/hiveParam"
+                }
+            ],
+            "responses": {
+                "200": {
+                    "description": "Success.",
+                    "content": {
+                        "application/json": {
+                            "example": {
+                                "result": {
+                                    "2220c81f-189e-4e0a-8619-6a0335a7516b": { 
+                                        "name": "Back Yard",
+                                        "observation_zones": [
+                                            "a65f8140-99d8-401e-9d4f-063b63ead563",
+                                            "1dcd4e96-15e0-47a6-947a-897569e59fe5"
+                                        ]
+                                    },
+                                    "2b806a97-426e-45a5-9c8e-3f38733cac9b": { 
+                                        "name": "Front Yard",
+                                        "observation_zones": [
+                                            "a2ccc3b95-1e48-471d-8fce-3cbcf320256",
+                                            "e55f99931c-5c2d-496b-89c5-4a678dc37c"
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "401": {
+                    "$ref": "#/components/responses/401"
+                },
+                "403": {
+                    "$ref": "#/components/responses/403"
+                },
+                "404": {
+                    "$ref": "#/components/responses/404"
+                }
+            }
+          }
+        },
+        "/api/v1/{hiveId}/flight_advisory/gonogo/status": {
+          "get": {
+            "tags": [
+              "Weather & Flight Advisory"
+            ],
+            "summary": "Flight Advisory",
+            "description": "Request the status of flight advisory",
+            "operationId": "getFlightAdvisoryStatus",
+            "parameters": [
+                {
+                    "$ref": "#/components/parameters/hiveParam"
+                }
+            ],
+            "responses": {
+                "200": {
+                    "description": "Success.",
+                    "content": {
+                        "application/json": {
+                            "example": {
+                                "result": {
+                                    "result": "go"
+                                }
+                            }
+                        }
+                    }
+                },
+                "401": {
+                    "$ref": "#/components/responses/401"
+                },
+                "403": {
+                    "$ref": "#/components/responses/403"
+                },
+                "404": {
+                    "$ref": "#/components/responses/404"
+                }
+            }
+          }
+        },
+        "/api/v1/{hiveId}/weather/gonogo/status": {
+          "get": {
+            "tags": [
+              "Weather & Flight Advisory"
+            ],
+            "summary": "Weather Condition",
+            "description": "Request the status of weather",
+            "operationId": "getWeatherStatus",
+            "parameters": [
+                {
+                    "$ref": "#/components/parameters/hiveParam"
+                }
+            ],
+            "responses": {
+                "200": {
+                    "description": "Success.",
+                    "content": {
+                        "application/json": {
+                            "example": {
+                                "result": {
+                                    "result": "nogo"
+                                }
+                            }
+                        }
+                    }
+                },
+                "401": {
+                    "$ref": "#/components/responses/401"
+                },
+                "403": {
+                    "$ref": "#/components/responses/403"
+                },
+                "404": {
+                    "$ref": "#/components/responses/404"
+                }
+            }
+          }
+        }
+    },
+    "components": {
+        "responses" : {
+            "200": {
+                "description": "Success.",
+                "content": {
+                    "application/json": {
+                        "example": {
+                            "status": "ok"
+                        }
+                    }
+                }
+            },
+            "401": {
+                "description": "Invalid token."
+            },
+            "403": {
+                "description": "Not authorized to access to the Hive."
+            },
+            "404": {
+                "description": "Invalid hiveId."
+            },
+            "500": {
+                "description": "Internal server error. There was an internal error when trying to serve the request."
+            }
+        },
+        "parameters": {
+            "hiveParam": {
+                "name": "hiveId",
+                "in": "path",
+                "description": "The UUID of the Hive",
+                "required": true,
+                "schema": {
+                    "type": "string",
+                    "example": "HIVE12"
+                }
+            }
+        },
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "scheme": "bearer"
+            }
+        }
+    },
+    "security": [
+        {"bearerAuth": []}
+    ],
+    "tags": [
+        {
+            "name": "Auth",
+            "description": "Authorization"
+        },
+        {
+            "name": "Hive",
+            "description": "Hive status, command and control."
+        },
+        {
+            "name": "Bee",
+            "description": "Bee status, command and control."
+        },
+        {
+            "name": "Weather & Flight Advisory",
+            "description": "Weather & Flight Advisory"
+        },
+        {
+            "name": "Map",
+            "description": "Map definition, command and control."
+        },
+        {
+            "name": "Target",
+            "description": "Set a dynamic target."
+        }
+    ]
+}
