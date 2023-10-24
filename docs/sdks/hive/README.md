@@ -1,0 +1,88 @@
+# Hive
+(*hive*)
+
+## Overview
+
+Hive status, command and control.
+
+### Available Operations
+
+* [hive_roof_control](#hive_roof_control) - Manual control for the Hive roof
+* [hive_roof_status](#hive_roof_status) - Get status of the Hive roof
+
+## hive_roof_control
+
+Manually open/close/stop the Hive roof. Not required for normal operations.
+
+### Example Usage
+
+```python
+import sunflower_labs_rest_api
+from sunflower_labs_rest_api.models import operations, shared
+
+s = sunflower_labs_rest_api.SunflowerLabsRESTAPI(
+    bearer_auth="",
+)
+
+req = operations.HiveRoofControlRequest(
+    request_body=operations.HiveRoofControlRequestBody(
+        action='string',
+    ),
+    hive_id='HIVE12',
+)
+
+res = s.hive.hive_roof_control(req)
+
+if res.status_code == 200:
+    # handle response
+    pass
+```
+
+### Parameters
+
+| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
+| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `request`                                                                              | [operations.HiveRoofControlRequest](../../models/operations/hiveroofcontrolrequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
+
+
+### Response
+
+**[operations.HiveRoofControlResponse](../../models/operations/hiveroofcontrolresponse.md)**
+
+
+## hive_roof_status
+
+Request the Hive roof status. The status may be one of the following: stopped, open, closed, error, opening, closing, unknown
+
+### Example Usage
+
+```python
+import sunflower_labs_rest_api
+from sunflower_labs_rest_api.models import operations, shared
+
+s = sunflower_labs_rest_api.SunflowerLabsRESTAPI(
+    bearer_auth="",
+)
+
+req = operations.HiveRoofStatusRequest(
+    hive_id='HIVE12',
+)
+
+res = s.hive.hive_roof_status(req)
+
+if res.status_code == 200:
+    # handle response
+    pass
+```
+
+### Parameters
+
+| Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
+| `request`                                                                            | [operations.HiveRoofStatusRequest](../../models/operations/hiveroofstatusrequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
+
+
+### Response
+
+**[operations.HiveRoofStatusResponse](../../models/operations/hiveroofstatusresponse.md)**
+

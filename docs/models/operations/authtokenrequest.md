@@ -1,0 +1,9 @@
+# AuthTokenRequest
+
+
+## Fields
+
+| Field                                                                             | Type                                                                              | Required                                                                          | Description                                                                       | Example                                                                           |
+| --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| `request_body`                                                                    | [Optional[AuthTokenRequestBody]](../../models/operations/authtokenrequestbody.md) | :heavy_minus_sign:                                                                | N/A                                                                               |                                                                                   |
+| `valid_for_seconds`                                                               | *Optional[float]*                                                                 | :heavy_minus_sign:                                                                | Lifetime of the requested token in seconds                                        | 3600                                                                              |
