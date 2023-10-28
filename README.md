@@ -15,7 +15,7 @@ It has been generated successfully based on your OpenAPI spec. However, it is no
 - [ ] 🎁 Publish your SDK to package managers by [configuring automatic publishing](https://www.speakeasyapi.dev/docs/productionize-sdks/publish-sdks)
 - [ ] ✨ When ready to productionize, delete this section from the README
 <!-- Start SDK Installation -->
-# SDK Installation
+## SDK Installation
 
 ```bash
 pip install git+https://github.com/speakeasy-sdks/Sunflower-Labs-sample-sdk.git
@@ -24,8 +24,6 @@ pip install git+https://github.com/speakeasy-sdks/Sunflower-Labs-sample-sdk.git
 
 ## SDK Example Usage
 <!-- Start SDK Example Usage -->
-
-
 ```python
 import sunflower_labs_rest_api
 from sunflower_labs_rest_api.models import operations, shared
@@ -51,14 +49,14 @@ if res.status_code == 200:
 <!-- End SDK Example Usage -->
 
 <!-- Start SDK Available Operations -->
-# Available Resources and Operations
+## Available Resources and Operations
 
 
-## [auth](docs/sdks/auth/README.md)
+### [auth](docs/sdks/auth/README.md)
 
 * [auth_token](docs/sdks/auth/README.md#auth_token) - Request an authorization token
 
-## [bee](docs/sdks/bee/README.md)
+### [bee](docs/sdks/bee/README.md)
 
 * [bee_follow](docs/sdks/bee/README.md#bee_follow) - Deploy the Bee to follow a target
 * [bee_inspect](docs/sdks/bee/README.md#bee_inspect) - Deploy the Bee to inspect a specific observation zone (OZ)
@@ -70,21 +68,21 @@ if res.status_code == 200:
 * [bee_status](docs/sdks/bee/README.md#bee_status) - Bee Status
 * [bee_sweep](docs/sdks/bee/README.md#bee_sweep) - Deploy the Bee to perform a sweep
 
-## [hive](docs/sdks/hive/README.md)
+### [hive](docs/sdks/hive/README.md)
 
 * [hive_roof_control](docs/sdks/hive/README.md#hive_roof_control) - Manual control for the Hive roof
 * [hive_roof_status](docs/sdks/hive/README.md#hive_roof_status) - Get status of the Hive roof
 
-## [map](docs/sdks/map/README.md)
+### [map](docs/sdks/map/README.md)
 
 * [get_o_zs](docs/sdks/map/README.md#get_o_zs) - Observation Zones
 * [get_sweeps](docs/sdks/map/README.md#get_sweeps) - Sweeps
 
-## [target](docs/sdks/target/README.md)
+### [target](docs/sdks/target/README.md)
 
 * [target_position](docs/sdks/target/README.md#target_position) - Set a dynamic target
 
-## [weather_and_flight_advisory](docs/sdks/weatherandflightadvisory/README.md)
+### [weather_and_flight_advisory](docs/sdks/weatherandflightadvisory/README.md)
 
 * [get_flight_advisory_status](docs/sdks/weatherandflightadvisory/README.md#get_flight_advisory_status) - Flight Advisory
 * [get_weather_status](docs/sdks/weatherandflightadvisory/README.md#get_weather_status) - Weather Condition
@@ -92,9 +90,111 @@ if res.status_code == 200:
 
 <!-- Start Dev Containers -->
 
-
-
 <!-- End Dev Containers -->
+
+
+
+<!-- Start Error Handling -->
+# Error Handling
+
+Handling errors in your SDK should largely match your expectations.  All operations return a response object or raise an error.  If Error objects are specified in your OpenAPI Spec, the SDK will raise the appropriate Error type.
+
+
+<!-- End Error Handling -->
+
+
+
+<!-- Start Server Selection -->
+# Server Selection
+
+## Select Server by Index
+
+You can override the default server globally by passing a server index to the `server_idx: int` optional parameter when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the indexes associated with the available servers:
+
+| # | Server | Variables |
+| - | ------ | --------- |
+| 0 | `https://api.sunflower-labs.com` | None |
+| 1 | `https://api.dev.sunflower-labs.com` | None |
+
+For example:
+
+
+```python
+import sunflower_labs_rest_api
+from sunflower_labs_rest_api.models import operations, shared
+
+s = sunflower_labs_rest_api.SunflowerLabsRESTAPI(
+    bearer_auth="",
+    server_idx=1
+)
+
+req = operations.AuthTokenRequest(
+    request_body=operations.AuthTokenRequestBody(
+        api_key='string',
+        hive_id='string',
+    ),
+    valid_for_seconds=3600,
+)
+
+res = s.auth.auth_token(req)
+
+if res.status_code == 200:
+    # handle response
+    pass
+```
+
+
+## Override Server URL Per-Client
+
+The default server can also be overridden globally by passing a URL to the `server_url: str` optional parameter when initializing the SDK client instance. For example:
+
+
+```python
+import sunflower_labs_rest_api
+from sunflower_labs_rest_api.models import operations, shared
+
+s = sunflower_labs_rest_api.SunflowerLabsRESTAPI(
+    bearer_auth="",
+    server_url="https://api.sunflower-labs.com"
+)
+
+req = operations.AuthTokenRequest(
+    request_body=operations.AuthTokenRequestBody(
+        api_key='string',
+        hive_id='string',
+    ),
+    valid_for_seconds=3600,
+)
+
+res = s.auth.auth_token(req)
+
+if res.status_code == 200:
+    # handle response
+    pass
+```
+<!-- End Server Selection -->
+
+
+
+<!-- Start Custom HTTP Client -->
+# Custom HTTP Client
+
+The Python SDK makes API calls using the (requests)[https://pypi.org/project/requests/] HTTP library.  In order to provide a convenient way to configure timeouts, cookies, proxies, custom headers, and other low-level configuration, you can initialize the SDK client with a custom `requests.Session` object.
+
+
+For example, you could specify a header for every request that your sdk makes as follows:
+
+```python
+import sunflower_labs_rest_api
+import requests
+
+http_client = requests.Session()
+http_client.headers.update({'x-custom-header': 'someValue'})
+s = sunflower_labs_rest_api.SunflowerLabsRESTAPI(client: http_client)
+```
+
+
+<!-- End Custom HTTP Client -->
 
 <!-- Placeholder for Future Speakeasy SDK Sections -->
 
