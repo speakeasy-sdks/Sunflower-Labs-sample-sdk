@@ -14,18 +14,18 @@ from typing import Dict
 
 class SunflowerLabsRESTAPI:
     r"""Sunflower Labs REST API: REST Bridge provides a REST API to the Sunflower Labs Home Awareness system."""
-    auth: Auth
-    r"""Authorization"""
     bee: Bee
     r"""Bee status, command and control."""
-    hive: Hive
-    r"""Hive status, command and control."""
     map: Map
     r"""Map definition, command and control."""
-    target: Target
-    r"""Set a dynamic target."""
     weather_and_flight_advisory: WeatherAndFlightAdvisory
     r"""Weather & Flight Advisory"""
+    hive: Hive
+    r"""Hive status, command and control."""
+    target: Target
+    r"""Set a dynamic target."""
+    auth: Auth
+    r"""Authorization"""
 
     sdk_configuration: SDKConfiguration
 
@@ -68,10 +68,10 @@ class SunflowerLabsRESTAPI:
         self._init_sdks()
     
     def _init_sdks(self):
-        self.auth = Auth(self.sdk_configuration)
         self.bee = Bee(self.sdk_configuration)
-        self.hive = Hive(self.sdk_configuration)
         self.map = Map(self.sdk_configuration)
-        self.target = Target(self.sdk_configuration)
         self.weather_and_flight_advisory = WeatherAndFlightAdvisory(self.sdk_configuration)
+        self.hive = Hive(self.sdk_configuration)
+        self.target = Target(self.sdk_configuration)
+        self.auth = Auth(self.sdk_configuration)
     

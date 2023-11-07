@@ -1,5 +1,5 @@
 # Hive
-(*hive*)
+(*.hive*)
 
 ## Overview
 
@@ -18,7 +18,7 @@ Manually open/close/stop the Hive roof. Not required for normal operations.
 
 ```python
 import sunflower_labs_rest_api
-from sunflower_labs_rest_api.models import operations, shared
+from sunflower_labs_rest_api.models import operations
 
 s = sunflower_labs_rest_api.SunflowerLabsRESTAPI(
     bearer_auth="",
@@ -58,7 +58,7 @@ Request the Hive roof status. The status may be one of the following: stopped, o
 
 ```python
 import sunflower_labs_rest_api
-from sunflower_labs_rest_api.models import operations, shared
+from sunflower_labs_rest_api.models import operations
 
 s = sunflower_labs_rest_api.SunflowerLabsRESTAPI(
     bearer_auth="",

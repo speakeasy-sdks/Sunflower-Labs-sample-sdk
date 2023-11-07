@@ -12,7 +12,7 @@ from typing import Optional
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
-class TargetPositionRequestBodyPosition:
+class Position:
     latitude: float = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('latitude') }})
     longitude: float = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('longitude') }})
     accuracy: Optional[float] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('accuracy'), 'exclude': lambda f: f is None }})
@@ -26,7 +26,7 @@ class TargetPositionRequestBodyPosition:
 class TargetPositionRequestBody:
     active: bool = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('active') }})
     id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('id') }})
-    position: Optional[TargetPositionRequestBodyPosition] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('position'), 'exclude': lambda f: f is None }})
+    position: Optional[Position] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('position'), 'exclude': lambda f: f is None }})
     time: Optional[datetime] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('time'), 'encoder': utils.datetimeisoformat(True), 'decoder': dateutil.parser.isoparse, 'exclude': lambda f: f is None }})
     timeout: Optional[float] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('timeout'), 'exclude': lambda f: f is None }})
     

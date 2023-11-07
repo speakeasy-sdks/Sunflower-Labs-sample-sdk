@@ -1,5 +1,5 @@
 # Map
-(*map*)
+(*.map*)
 
 ## Overview
 
@@ -18,7 +18,7 @@ Request a list of available observation zones
 
 ```python
 import sunflower_labs_rest_api
-from sunflower_labs_rest_api.models import operations, shared
+from sunflower_labs_rest_api.models import operations
 
 s = sunflower_labs_rest_api.SunflowerLabsRESTAPI(
     bearer_auth="",
@@ -55,7 +55,7 @@ Request a list of available sweeps
 
 ```python
 import sunflower_labs_rest_api
-from sunflower_labs_rest_api.models import operations, shared
+from sunflower_labs_rest_api.models import operations
 
 s = sunflower_labs_rest_api.SunflowerLabsRESTAPI(
     bearer_auth="",

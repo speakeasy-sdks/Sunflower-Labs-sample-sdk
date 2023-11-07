@@ -1,5 +1,5 @@
 # Bee
-(*bee*)
+(*.bee*)
 
 ## Overview
 
@@ -25,7 +25,7 @@ Bee status, command and control.
 
 ```python
 import sunflower_labs_rest_api
-from sunflower_labs_rest_api.models import operations, shared
+from sunflower_labs_rest_api.models import operations
 
 s = sunflower_labs_rest_api.SunflowerLabsRESTAPI(
     bearer_auth="",
@@ -65,7 +65,7 @@ if res.status_code == 200:
 
 ```python
 import sunflower_labs_rest_api
-from sunflower_labs_rest_api.models import operations, shared
+from sunflower_labs_rest_api.models import operations
 
 s = sunflower_labs_rest_api.SunflowerLabsRESTAPI(
     bearer_auth="",
@@ -105,7 +105,7 @@ Command the Bee to kill the power to the motors. It will fall out of the sky. Th
 
 ```python
 import sunflower_labs_rest_api
-from sunflower_labs_rest_api.models import operations, shared
+from sunflower_labs_rest_api.models import operations
 
 s = sunflower_labs_rest_api.SunflowerLabsRESTAPI(
     bearer_auth="",
@@ -143,7 +143,7 @@ Command the Bee to return to the Hive.
 
 ```python
 import sunflower_labs_rest_api
-from sunflower_labs_rest_api.models import operations, shared
+from sunflower_labs_rest_api.models import operations
 
 s = sunflower_labs_rest_api.SunflowerLabsRESTAPI(
     bearer_auth="",
@@ -181,7 +181,7 @@ Command the Bee to descend and land at the current location. This should only be
 
 ```python
 import sunflower_labs_rest_api
-from sunflower_labs_rest_api.models import operations, shared
+from sunflower_labs_rest_api.models import operations
 
 s = sunflower_labs_rest_api.SunflowerLabsRESTAPI(
     bearer_auth="",
@@ -219,7 +219,7 @@ if res.status_code == 200:
 
 ```python
 import sunflower_labs_rest_api
-from sunflower_labs_rest_api.models import operations, shared
+from sunflower_labs_rest_api.models import operations
 
 s = sunflower_labs_rest_api.SunflowerLabsRESTAPI(
     bearer_auth="",
@@ -260,7 +260,7 @@ Request the Bee position. lat and lon are the latitude and longitude of the posi
 
 ```python
 import sunflower_labs_rest_api
-from sunflower_labs_rest_api.models import operations, shared
+from sunflower_labs_rest_api.models import operations
 
 s = sunflower_labs_rest_api.SunflowerLabsRESTAPI(
     bearer_auth="",
@@ -297,7 +297,7 @@ Request the Bee status. The status may be one of the following: landed_in_hive, 
 
 ```python
 import sunflower_labs_rest_api
-from sunflower_labs_rest_api.models import operations, shared
+from sunflower_labs_rest_api.models import operations
 
 s = sunflower_labs_rest_api.SunflowerLabsRESTAPI(
     bearer_auth="",
@@ -334,7 +334,7 @@ if res.status_code == 200:
 
 ```python
 import sunflower_labs_rest_api
-from sunflower_labs_rest_api.models import operations, shared
+from sunflower_labs_rest_api.models import operations
 
 s = sunflower_labs_rest_api.SunflowerLabsRESTAPI(
     bearer_auth="",

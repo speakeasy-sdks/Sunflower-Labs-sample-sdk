@@ -3,21 +3,20 @@
 
 ```python
 import sunflower_labs_rest_api
-from sunflower_labs_rest_api.models import operations, shared
+from sunflower_labs_rest_api.models import operations
 
 s = sunflower_labs_rest_api.SunflowerLabsRESTAPI(
     bearer_auth="",
 )
 
-req = operations.AuthTokenRequest(
-    request_body=operations.AuthTokenRequestBody(
-        api_key='string',
-        hive_id='string',
+req = operations.BeeFollowRequest(
+    request_body=operations.BeeFollowRequestBody(
+        target_id='string',
     ),
-    valid_for_seconds=3600,
+    hive_id='HIVE12',
 )
 
-res = s.auth.auth_token(req)
+res = s.bee.bee_follow(req)
 
 if res.status_code == 200:
     # handle response

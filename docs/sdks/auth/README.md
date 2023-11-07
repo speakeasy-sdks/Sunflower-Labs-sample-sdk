@@ -1,5 +1,5 @@
 # Auth
-(*auth*)
+(*.auth*)
 
 ## Overview
 
@@ -17,7 +17,7 @@ Request a token for use in API calls. The hive ID and the API key must be specif
 
 ```python
 import sunflower_labs_rest_api
-from sunflower_labs_rest_api.models import operations, shared
+from sunflower_labs_rest_api.models import operations
 
 s = sunflower_labs_rest_api.SunflowerLabsRESTAPI(
     bearer_auth="",

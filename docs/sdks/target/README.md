@@ -1,5 +1,5 @@
 # Target
-(*target*)
+(*.target*)
 
 ## Overview
 
@@ -16,9 +16,9 @@ Set or update the position of a dynamic target. Please be aware of the default t
 ### Example Usage
 
 ```python
-import sunflower_labs_rest_api
 import dateutil.parser
-from sunflower_labs_rest_api.models import operations, shared
+import sunflower_labs_rest_api
+from sunflower_labs_rest_api.models import operations
 
 s = sunflower_labs_rest_api.SunflowerLabsRESTAPI(
     bearer_auth="",
@@ -28,7 +28,7 @@ req = operations.TargetPositionRequest(
     request_body=operations.TargetPositionRequestBody(
         active=False,
         id='<ID>',
-        position=operations.TargetPositionRequestBodyPosition(
+        position=operations.Position(
             latitude=7643.18,
             longitude=9490.02,
         ),

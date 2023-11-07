@@ -26,21 +26,20 @@ pip install git+https://github.com/speakeasy-sdks/Sunflower-Labs-sample-sdk.git
 <!-- Start SDK Example Usage -->
 ```python
 import sunflower_labs_rest_api
-from sunflower_labs_rest_api.models import operations, shared
+from sunflower_labs_rest_api.models import operations
 
 s = sunflower_labs_rest_api.SunflowerLabsRESTAPI(
     bearer_auth="",
 )
 
-req = operations.AuthTokenRequest(
-    request_body=operations.AuthTokenRequestBody(
-        api_key='string',
-        hive_id='string',
+req = operations.BeeFollowRequest(
+    request_body=operations.BeeFollowRequestBody(
+        target_id='string',
     ),
-    valid_for_seconds=3600,
+    hive_id='HIVE12',
 )
 
-res = s.auth.auth_token(req)
+res = s.bee.bee_follow(req)
 
 if res.status_code == 200:
     # handle response
@@ -52,11 +51,7 @@ if res.status_code == 200:
 ## Available Resources and Operations
 
 
-### [auth](docs/sdks/auth/README.md)
-
-* [auth_token](docs/sdks/auth/README.md#auth_token) - Request an authorization token
-
-### [bee](docs/sdks/bee/README.md)
+### [.bee](docs/sdks/bee/README.md)
 
 * [bee_follow](docs/sdks/bee/README.md#bee_follow) - Deploy the Bee to follow a target
 * [bee_inspect](docs/sdks/bee/README.md#bee_inspect) - Deploy the Bee to inspect a specific observation zone (OZ)
@@ -68,24 +63,28 @@ if res.status_code == 200:
 * [bee_status](docs/sdks/bee/README.md#bee_status) - Bee Status
 * [bee_sweep](docs/sdks/bee/README.md#bee_sweep) - Deploy the Bee to perform a sweep
 
-### [hive](docs/sdks/hive/README.md)
-
-* [hive_roof_control](docs/sdks/hive/README.md#hive_roof_control) - Manual control for the Hive roof
-* [hive_roof_status](docs/sdks/hive/README.md#hive_roof_status) - Get status of the Hive roof
-
-### [map](docs/sdks/map/README.md)
+### [.map](docs/sdks/map/README.md)
 
 * [get_o_zs](docs/sdks/map/README.md#get_o_zs) - Observation Zones
 * [get_sweeps](docs/sdks/map/README.md#get_sweeps) - Sweeps
 
-### [target](docs/sdks/target/README.md)
-
-* [target_position](docs/sdks/target/README.md#target_position) - Set a dynamic target
-
-### [weather_and_flight_advisory](docs/sdks/weatherandflightadvisory/README.md)
+### [.weather_and_flight_advisory](docs/sdks/weatherandflightadvisory/README.md)
 
 * [get_flight_advisory_status](docs/sdks/weatherandflightadvisory/README.md#get_flight_advisory_status) - Flight Advisory
 * [get_weather_status](docs/sdks/weatherandflightadvisory/README.md#get_weather_status) - Weather Condition
+
+### [.hive](docs/sdks/hive/README.md)
+
+* [hive_roof_control](docs/sdks/hive/README.md#hive_roof_control) - Manual control for the Hive roof
+* [hive_roof_status](docs/sdks/hive/README.md#hive_roof_status) - Get status of the Hive roof
+
+### [.target](docs/sdks/target/README.md)
+
+* [target_position](docs/sdks/target/README.md#target_position) - Set a dynamic target
+
+### [.auth](docs/sdks/auth/README.md)
+
+* [auth_token](docs/sdks/auth/README.md#auth_token) - Request an authorization token
 <!-- End SDK Available Operations -->
 
 <!-- Start Dev Containers -->
@@ -98,8 +97,6 @@ if res.status_code == 200:
 # Error Handling
 
 Handling errors in your SDK should largely match your expectations.  All operations return a response object or raise an error.  If Error objects are specified in your OpenAPI Spec, the SDK will raise the appropriate Error type.
-
-
 <!-- End Error Handling -->
 
 
@@ -118,25 +115,23 @@ You can override the default server globally by passing a server index to the `s
 
 For example:
 
-
 ```python
 import sunflower_labs_rest_api
-from sunflower_labs_rest_api.models import operations, shared
+from sunflower_labs_rest_api.models import operations
 
 s = sunflower_labs_rest_api.SunflowerLabsRESTAPI(
+    server_idx=1,
     bearer_auth="",
-    server_idx=1
 )
 
-req = operations.AuthTokenRequest(
-    request_body=operations.AuthTokenRequestBody(
-        api_key='string',
-        hive_id='string',
+req = operations.BeeFollowRequest(
+    request_body=operations.BeeFollowRequestBody(
+        target_id='string',
     ),
-    valid_for_seconds=3600,
+    hive_id='HIVE12',
 )
 
-res = s.auth.auth_token(req)
+res = s.bee.bee_follow(req)
 
 if res.status_code == 200:
     # handle response
@@ -148,25 +143,23 @@ if res.status_code == 200:
 
 The default server can also be overridden globally by passing a URL to the `server_url: str` optional parameter when initializing the SDK client instance. For example:
 
-
 ```python
 import sunflower_labs_rest_api
-from sunflower_labs_rest_api.models import operations, shared
+from sunflower_labs_rest_api.models import operations
 
 s = sunflower_labs_rest_api.SunflowerLabsRESTAPI(
+    server_url="https://api.sunflower-labs.com",
     bearer_auth="",
-    server_url="https://api.sunflower-labs.com"
 )
 
-req = operations.AuthTokenRequest(
-    request_body=operations.AuthTokenRequestBody(
-        api_key='string',
-        hive_id='string',
+req = operations.BeeFollowRequest(
+    request_body=operations.BeeFollowRequestBody(
+        target_id='string',
     ),
-    valid_for_seconds=3600,
+    hive_id='HIVE12',
 )
 
-res = s.auth.auth_token(req)
+res = s.bee.bee_follow(req)
 
 if res.status_code == 200:
     # handle response
@@ -192,9 +185,46 @@ http_client = requests.Session()
 http_client.headers.update({'x-custom-header': 'someValue'})
 s = sunflower_labs_rest_api.SunflowerLabsRESTAPI(client: http_client)
 ```
-
-
 <!-- End Custom HTTP Client -->
+
+
+
+<!-- Start Authentication -->
+
+# Authentication
+
+## Per-Client Security Schemes
+
+Your SDK supports the following security scheme globally:
+
+| Name          | Type          | Scheme        |
+| ------------- | ------------- | ------------- |
+| `bearer_auth` | http          | HTTP Bearer   |
+
+To authenticate with the API the `bearer_auth` parameter must be set when initializing the SDK client instance. For example:
+
+```python
+import sunflower_labs_rest_api
+from sunflower_labs_rest_api.models import operations
+
+s = sunflower_labs_rest_api.SunflowerLabsRESTAPI(
+    bearer_auth="",
+)
+
+req = operations.BeeFollowRequest(
+    request_body=operations.BeeFollowRequestBody(
+        target_id='string',
+    ),
+    hive_id='HIVE12',
+)
+
+res = s.bee.bee_follow(req)
+
+if res.status_code == 200:
+    # handle response
+    pass
+```
+<!-- End Authentication -->
 
 <!-- Placeholder for Future Speakeasy SDK Sections -->
 

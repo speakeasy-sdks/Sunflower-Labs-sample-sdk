@@ -1,5 +1,5 @@
 # WeatherAndFlightAdvisory
-(*weather_and_flight_advisory*)
+(*.weather_and_flight_advisory*)
 
 ## Overview
 
@@ -18,7 +18,7 @@ Request the status of flight advisory
 
 ```python
 import sunflower_labs_rest_api
-from sunflower_labs_rest_api.models import operations, shared
+from sunflower_labs_rest_api.models import operations
 
 s = sunflower_labs_rest_api.SunflowerLabsRESTAPI(
     bearer_auth="",
@@ -55,7 +55,7 @@ Request the status of weather
 
 ```python
 import sunflower_labs_rest_api
-from sunflower_labs_rest_api.models import operations, shared
+from sunflower_labs_rest_api.models import operations
 
 s = sunflower_labs_rest_api.SunflowerLabsRESTAPI(
     bearer_auth="",
