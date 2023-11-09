@@ -12,6 +12,7 @@ class Target:
         self.sdk_configuration = sdk_config
         
     
+    
     def target_position(self, request: operations.TargetPositionRequest) -> operations.TargetPositionResponse:
         r"""Set a dynamic target
         Set or update the position of a dynamic target. Please be aware of the default timeout 60s (if timeout is not specified). A target must be within the operational geofence. If the altitude is not specified, the target is assumed to be on top of the 3D mesh at the given latitude and longitude. A target will be ignored if the given time or position is invalid.
@@ -26,7 +27,10 @@ class Target:
         headers['Accept'] = '*/*'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('POST', url, data=data, files=form, headers=headers)
         content_type = http_res.headers.get('Content-Type')

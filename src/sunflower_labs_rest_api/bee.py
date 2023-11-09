@@ -12,6 +12,7 @@ class Bee:
         self.sdk_configuration = sdk_config
         
     
+    
     def bee_follow(self, request: operations.BeeFollowRequest) -> operations.BeeFollowResponse:
         r"""Deploy the Bee to follow a target
         <p>Send the Bee to follow a target. A target needs to exist before this can be used.</p><p>Please send GET requests to retrieve flight advisory and weather condition before sending this command. If flight advisory is unknown or nogo, the flight_advisory_overridden has to be set in order to acknowledge that you want to proceed anyway. Otherwise, the command will be rejected. Similarly, if weather condition is unknown or nogo, the weather_overridden has to be set.</p>
@@ -26,7 +27,10 @@ class Bee:
         headers['Accept'] = '*/*'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('POST', url, data=data, files=form, headers=headers)
         content_type = http_res.headers.get('Content-Type')
@@ -40,6 +44,7 @@ class Bee:
 
         return res
 
+    
     
     def bee_inspect(self, request: operations.BeeInspectRequest) -> operations.BeeInspectResponse:
         r"""Deploy the Bee to inspect a specific observation zone (OZ)
@@ -55,7 +60,10 @@ class Bee:
         headers['Accept'] = '*/*'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('POST', url, data=data, files=form, headers=headers)
         content_type = http_res.headers.get('Content-Type')
@@ -69,6 +77,7 @@ class Bee:
 
         return res
 
+    
     
     def bee_kill(self, request: operations.BeeKillRequest) -> operations.BeeKillResponse:
         r"""Shut down power to motors (Emergency Procedure)
@@ -84,7 +93,10 @@ class Bee:
         headers['Accept'] = '*/*'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('POST', url, data=data, files=form, headers=headers)
         content_type = http_res.headers.get('Content-Type')
@@ -98,6 +110,7 @@ class Bee:
 
         return res
 
+    
     
     def bee_land(self, request: operations.BeeLandRequest) -> operations.BeeLandResponse:
         r"""Bee returns to the Hive
@@ -113,7 +126,10 @@ class Bee:
         headers['Accept'] = '*/*'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('POST', url, data=data, files=form, headers=headers)
         content_type = http_res.headers.get('Content-Type')
@@ -127,6 +143,7 @@ class Bee:
 
         return res
 
+    
     
     def bee_land_here(self, request: operations.BeeLandHereRequest) -> operations.BeeLandHereResponse:
         r"""Bee lands in place (Emergency Procedure)
@@ -142,7 +159,10 @@ class Bee:
         headers['Accept'] = '*/*'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('POST', url, data=data, files=form, headers=headers)
         content_type = http_res.headers.get('Content-Type')
@@ -156,6 +176,7 @@ class Bee:
 
         return res
 
+    
     
     def bee_ptz(self, request: operations.BeePTZRequest) -> operations.BeePTZResponse:
         r"""Bee camera controls
@@ -171,7 +192,10 @@ class Bee:
         headers['Accept'] = '*/*'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('POST', url, data=data, files=form, headers=headers)
         content_type = http_res.headers.get('Content-Type')
@@ -186,6 +210,7 @@ class Bee:
         return res
 
     
+    
     def bee_position(self, request: operations.BeePositionRequest) -> operations.BeePositionResponse:
         r"""Bee Position
         Request the Bee position. lat and lon are the latitude and longitude of the position on WGS 84, alt is the height of the position on AMSL.
@@ -197,7 +222,10 @@ class Bee:
         headers['Accept'] = '*/*'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('GET', url, headers=headers)
         content_type = http_res.headers.get('Content-Type')
@@ -212,6 +240,7 @@ class Bee:
         return res
 
     
+    
     def bee_status(self, request: operations.BeeStatusRequest) -> operations.BeeStatusResponse:
         r"""Bee Status
         Request the Bee status. The status may be one of the following: landed_in_hive, landed_outside, take_off, on_inspection, on_sweep, paused, returning, returning_fallback, landing, landing_fallback, killed, calibrating, error, hopping, unknown
@@ -223,7 +252,10 @@ class Bee:
         headers['Accept'] = '*/*'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('GET', url, headers=headers)
         content_type = http_res.headers.get('Content-Type')
@@ -237,6 +269,7 @@ class Bee:
 
         return res
 
+    
     
     def bee_sweep(self, request: operations.BeeSweepRequest) -> operations.BeeSweepResponse:
         r"""Deploy the Bee to perform a sweep
@@ -252,7 +285,10 @@ class Bee:
         headers['Accept'] = '*/*'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('POST', url, data=data, files=form, headers=headers)
         content_type = http_res.headers.get('Content-Type')

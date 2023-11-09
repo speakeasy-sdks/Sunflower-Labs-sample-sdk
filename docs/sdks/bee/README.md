@@ -1,5 +1,5 @@
 # Bee
-(*.bee*)
+(*bee*)
 
 ## Overview
 
@@ -55,7 +55,11 @@ if res.status_code == 200:
 ### Response
 
 **[operations.BeeFollowResponse](../../models/operations/beefollowresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## bee_inspect
 
@@ -95,7 +99,11 @@ if res.status_code == 200:
 ### Response
 
 **[operations.BeeInspectResponse](../../models/operations/beeinspectresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## bee_kill
 
@@ -133,7 +141,11 @@ if res.status_code == 200:
 ### Response
 
 **[operations.BeeKillResponse](../../models/operations/beekillresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## bee_land
 
@@ -171,7 +183,11 @@ if res.status_code == 200:
 ### Response
 
 **[operations.BeeLandResponse](../../models/operations/beelandresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## bee_land_here
 
@@ -209,7 +225,11 @@ if res.status_code == 200:
 ### Response
 
 **[operations.BeeLandHereResponse](../../models/operations/beelandhereresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## bee_ptz
 
@@ -250,7 +270,11 @@ if res.status_code == 200:
 ### Response
 
 **[operations.BeePTZResponse](../../models/operations/beeptzresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## bee_position
 
@@ -287,7 +311,11 @@ if res.status_code == 200:
 ### Response
 
 **[operations.BeePositionResponse](../../models/operations/beepositionresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## bee_status
 
@@ -324,7 +352,11 @@ if res.status_code == 200:
 ### Response
 
 **[operations.BeeStatusResponse](../../models/operations/beestatusresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## bee_sweep
 
@@ -364,4 +396,8 @@ if res.status_code == 200:
 ### Response
 
 **[operations.BeeSweepResponse](../../models/operations/beesweepresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |

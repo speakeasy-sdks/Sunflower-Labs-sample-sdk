@@ -12,6 +12,7 @@ class Map:
         self.sdk_configuration = sdk_config
         
     
+    
     def get_o_zs(self, request: operations.GetOZsRequest) -> operations.GetOZsResponse:
         r"""Observation Zones
         Request a list of available observation zones
@@ -23,7 +24,10 @@ class Map:
         headers['Accept'] = '*/*'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('GET', url, headers=headers)
         content_type = http_res.headers.get('Content-Type')
@@ -38,6 +42,7 @@ class Map:
         return res
 
     
+    
     def get_sweeps(self, request: operations.GetSweepsRequest) -> operations.GetSweepsResponse:
         r"""Sweeps
         Request a list of available sweeps
@@ -49,7 +54,10 @@ class Map:
         headers['Accept'] = '*/*'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('GET', url, headers=headers)
         content_type = http_res.headers.get('Content-Type')

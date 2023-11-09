@@ -1,5 +1,5 @@
 # Map
-(*.map*)
+(*map*)
 
 ## Overview
 
@@ -45,7 +45,11 @@ if res.status_code == 200:
 ### Response
 
 **[operations.GetOZsResponse](../../models/operations/getozsresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## get_sweeps
 
@@ -82,4 +86,8 @@ if res.status_code == 200:
 ### Response
 
 **[operations.GetSweepsResponse](../../models/operations/getsweepsresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |

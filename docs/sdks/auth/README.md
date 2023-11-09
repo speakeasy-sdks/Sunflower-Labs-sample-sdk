@@ -1,5 +1,5 @@
 # Auth
-(*.auth*)
+(*auth*)
 
 ## Overview
 
@@ -48,4 +48,8 @@ if res.status_code == 200:
 ### Response
 
 **[operations.AuthTokenResponse](../../models/operations/authtokenresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |

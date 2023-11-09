@@ -51,7 +51,7 @@ if res.status_code == 200:
 ## Available Resources and Operations
 
 
-### [.bee](docs/sdks/bee/README.md)
+### [bee](docs/sdks/bee/README.md)
 
 * [bee_follow](docs/sdks/bee/README.md#bee_follow) - Deploy the Bee to follow a target
 * [bee_inspect](docs/sdks/bee/README.md#bee_inspect) - Deploy the Bee to inspect a specific observation zone (OZ)
@@ -63,26 +63,26 @@ if res.status_code == 200:
 * [bee_status](docs/sdks/bee/README.md#bee_status) - Bee Status
 * [bee_sweep](docs/sdks/bee/README.md#bee_sweep) - Deploy the Bee to perform a sweep
 
-### [.map](docs/sdks/map/README.md)
+### [map](docs/sdks/map/README.md)
 
 * [get_o_zs](docs/sdks/map/README.md#get_o_zs) - Observation Zones
 * [get_sweeps](docs/sdks/map/README.md#get_sweeps) - Sweeps
 
-### [.weather_and_flight_advisory](docs/sdks/weatherandflightadvisory/README.md)
+### [weather_and_flight_advisory](docs/sdks/weatherandflightadvisory/README.md)
 
 * [get_flight_advisory_status](docs/sdks/weatherandflightadvisory/README.md#get_flight_advisory_status) - Flight Advisory
 * [get_weather_status](docs/sdks/weatherandflightadvisory/README.md#get_weather_status) - Weather Condition
 
-### [.hive](docs/sdks/hive/README.md)
+### [hive](docs/sdks/hive/README.md)
 
 * [hive_roof_control](docs/sdks/hive/README.md#hive_roof_control) - Manual control for the Hive roof
 * [hive_roof_status](docs/sdks/hive/README.md#hive_roof_status) - Get status of the Hive roof
 
-### [.target](docs/sdks/target/README.md)
+### [target](docs/sdks/target/README.md)
 
 * [target_position](docs/sdks/target/README.md#target_position) - Set a dynamic target
 
-### [.auth](docs/sdks/auth/README.md)
+### [auth](docs/sdks/auth/README.md)
 
 * [auth_token](docs/sdks/auth/README.md#auth_token) - Request an authorization token
 <!-- End SDK Available Operations -->
@@ -96,7 +96,42 @@ if res.status_code == 200:
 <!-- Start Error Handling -->
 # Error Handling
 
-Handling errors in your SDK should largely match your expectations.  All operations return a response object or raise an error.  If Error objects are specified in your OpenAPI Spec, the SDK will raise the appropriate Error type.
+Handling errors in this SDK should largely match your expectations.  All operations return a response object or raise an error.  If Error objects are specified in your OpenAPI Spec, the SDK will raise the appropriate Error type.
+
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
+
+
+## Example
+
+```python
+import sunflower_labs_rest_api
+from sunflower_labs_rest_api.models import operations
+
+s = sunflower_labs_rest_api.SunflowerLabsRESTAPI(
+    bearer_auth="",
+)
+
+req = operations.BeeFollowRequest(
+    request_body=operations.BeeFollowRequestBody(
+        target_id='string',
+    ),
+    hive_id='HIVE12',
+)
+
+res = None
+try:
+    res = s.bee.bee_follow(req)
+
+except (errors.SDKError) as e:
+    print(e) # handle exception
+
+
+if res.status_code == 200:
+    # handle response
+    pass
+```
 <!-- End Error Handling -->
 
 
@@ -175,7 +210,7 @@ if res.status_code == 200:
 The Python SDK makes API calls using the (requests)[https://pypi.org/project/requests/] HTTP library.  In order to provide a convenient way to configure timeouts, cookies, proxies, custom headers, and other low-level configuration, you can initialize the SDK client with a custom `requests.Session` object.
 
 
-For example, you could specify a header for every request that your sdk makes as follows:
+For example, you could specify a header for every request that this sdk makes as follows:
 
 ```python
 import sunflower_labs_rest_api
@@ -190,12 +225,11 @@ s = sunflower_labs_rest_api.SunflowerLabsRESTAPI(client: http_client)
 
 
 <!-- Start Authentication -->
-
 # Authentication
 
 ## Per-Client Security Schemes
 
-Your SDK supports the following security scheme globally:
+This SDK supports the following security scheme globally:
 
 | Name          | Type          | Scheme        |
 | ------------- | ------------- | ------------- |

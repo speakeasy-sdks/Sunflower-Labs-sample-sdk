@@ -12,6 +12,7 @@ class Auth:
         self.sdk_configuration = sdk_config
         
     
+    
     def auth_token(self, request: operations.AuthTokenRequest) -> operations.AuthTokenResponse:
         r"""Request an authorization token
         Request a token for use in API calls. The hive ID and the API key must be specified in the body.
@@ -27,7 +28,10 @@ class Auth:
         headers['Accept'] = '*/*'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('POST', url, params=query_params, data=data, files=form, headers=headers)
         content_type = http_res.headers.get('Content-Type')

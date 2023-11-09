@@ -1,5 +1,5 @@
 # Hive
-(*.hive*)
+(*hive*)
 
 ## Overview
 
@@ -48,7 +48,11 @@ if res.status_code == 200:
 ### Response
 
 **[operations.HiveRoofControlResponse](../../models/operations/hiveroofcontrolresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## hive_roof_status
 
@@ -85,4 +89,8 @@ if res.status_code == 200:
 ### Response
 
 **[operations.HiveRoofStatusResponse](../../models/operations/hiveroofstatusresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |

@@ -1,5 +1,5 @@
 # WeatherAndFlightAdvisory
-(*.weather_and_flight_advisory*)
+(*weather_and_flight_advisory*)
 
 ## Overview
 
@@ -45,7 +45,11 @@ if res.status_code == 200:
 ### Response
 
 **[operations.GetFlightAdvisoryStatusResponse](../../models/operations/getflightadvisorystatusresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## get_weather_status
 
@@ -82,4 +86,8 @@ if res.status_code == 200:
 ### Response
 
 **[operations.GetWeatherStatusResponse](../../models/operations/getweatherstatusresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |

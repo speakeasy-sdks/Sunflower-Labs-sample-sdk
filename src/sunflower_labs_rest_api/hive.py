@@ -12,6 +12,7 @@ class Hive:
         self.sdk_configuration = sdk_config
         
     
+    
     def hive_roof_control(self, request: operations.HiveRoofControlRequest) -> operations.HiveRoofControlResponse:
         r"""Manual control for the Hive roof
         Manually open/close/stop the Hive roof. Not required for normal operations.
@@ -26,7 +27,10 @@ class Hive:
         headers['Accept'] = '*/*'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('POST', url, data=data, files=form, headers=headers)
         content_type = http_res.headers.get('Content-Type')
@@ -41,6 +45,7 @@ class Hive:
         return res
 
     
+    
     def hive_roof_status(self, request: operations.HiveRoofStatusRequest) -> operations.HiveRoofStatusResponse:
         r"""Get status of the Hive roof
         Request the Hive roof status. The status may be one of the following: stopped, open, closed, error, opening, closing, unknown
@@ -52,7 +57,10 @@ class Hive:
         headers['Accept'] = '*/*'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('GET', url, headers=headers)
         content_type = http_res.headers.get('Content-Type')
