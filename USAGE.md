@@ -1,6 +1,4 @@
 <!-- Start SDK Example Usage -->
-
-
 ```python
 import sunflower_labs_rest_api
 from sunflower_labs_rest_api.models import operations
