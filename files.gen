@@ -13,6 +13,7 @@ src/sunflower_labs_rest_api/utils/__init__.py
 src/sunflower_labs_rest_api/utils/retries.py
 src/sunflower_labs_rest_api/utils/utils.py
 src/sunflower_labs_rest_api/models/errors/sdkerror.py
+tests/helpers.py
 src/sunflower_labs_rest_api/models/operations/beefollow.py
 src/sunflower_labs_rest_api/models/operations/beeinspect.py
 src/sunflower_labs_rest_api/models/operations/beekill.py
