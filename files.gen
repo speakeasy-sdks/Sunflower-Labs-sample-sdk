@@ -36,7 +36,6 @@ src/sunflower_labs_rest_api/models/__init__.py
 src/sunflower_labs_rest_api/models/errors/__init__.py
 src/sunflower_labs_rest_api/models/operations/__init__.py
 src/sunflower_labs_rest_api/models/shared/__init__.py
-USAGE.md
 docs/models/operations/beefollowrequestbody.md
 docs/models/operations/beefollowrequest.md
 docs/models/operations/beefollowresponse.md
@@ -90,4 +89,5 @@ docs/sdks/weatherandflightadvisory/README.md
 docs/sdks/hive/README.md
 docs/sdks/target/README.md
 docs/sdks/auth/README.md
+USAGE.md
 .gitattributes
