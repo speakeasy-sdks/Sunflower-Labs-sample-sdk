@@ -19,9 +19,7 @@ Request a token for use in API calls. The hive ID and the API key must be specif
 import sunflower_labs_rest_api
 from sunflower_labs_rest_api.models import operations
 
-s = sunflower_labs_rest_api.SunflowerLabsRESTAPI(
-    bearer_auth="",
-)
+s = sunflower_labs_rest_api.SunflowerLabsRESTAPI()
 
 req = operations.AuthTokenRequest(
     request_body=operations.AuthTokenRequestBody(

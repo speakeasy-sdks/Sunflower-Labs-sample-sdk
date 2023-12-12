@@ -21,7 +21,7 @@ class Bee:
         
         url = utils.generate_url(operations.BeeFollowRequest, base_url, '/api/v1/{hiveId}/bee/follow', request)
         headers = {}
-        req_content_type, data, form = utils.serialize_request_body(request, "request_body", False, True, 'json')
+        req_content_type, data, form = utils.serialize_request_body(request, operations.BeeFollowRequest, "request_body", False, True, 'json')
         if req_content_type not in ('multipart/form-data', 'multipart/mixed'):
             headers['content-type'] = req_content_type
         headers['Accept'] = '*/*'
@@ -54,7 +54,7 @@ class Bee:
         
         url = utils.generate_url(operations.BeeInspectRequest, base_url, '/api/v1/{hiveId}/bee/inspect', request)
         headers = {}
-        req_content_type, data, form = utils.serialize_request_body(request, "request_body", False, True, 'json')
+        req_content_type, data, form = utils.serialize_request_body(request, operations.BeeInspectRequest, "request_body", False, True, 'json')
         if req_content_type not in ('multipart/form-data', 'multipart/mixed'):
             headers['content-type'] = req_content_type
         headers['Accept'] = '*/*'
@@ -87,7 +87,7 @@ class Bee:
         
         url = utils.generate_url(operations.BeeKillRequest, base_url, '/api/v1/{hiveId}/bee/kill', request)
         headers = {}
-        req_content_type, data, form = utils.serialize_request_body(request, "request_body", False, True, 'json')
+        req_content_type, data, form = utils.serialize_request_body(request, operations.BeeKillRequest, "request_body", False, True, 'json')
         if req_content_type not in ('multipart/form-data', 'multipart/mixed'):
             headers['content-type'] = req_content_type
         headers['Accept'] = '*/*'
@@ -120,7 +120,7 @@ class Bee:
         
         url = utils.generate_url(operations.BeeLandRequest, base_url, '/api/v1/{hiveId}/bee/land', request)
         headers = {}
-        req_content_type, data, form = utils.serialize_request_body(request, "request_body", False, True, 'json')
+        req_content_type, data, form = utils.serialize_request_body(request, operations.BeeLandRequest, "request_body", False, True, 'json')
         if req_content_type not in ('multipart/form-data', 'multipart/mixed'):
             headers['content-type'] = req_content_type
         headers['Accept'] = '*/*'
@@ -153,7 +153,7 @@ class Bee:
         
         url = utils.generate_url(operations.BeeLandHereRequest, base_url, '/api/v1/{hiveId}/bee/land_here', request)
         headers = {}
-        req_content_type, data, form = utils.serialize_request_body(request, "request_body", False, True, 'json')
+        req_content_type, data, form = utils.serialize_request_body(request, operations.BeeLandHereRequest, "request_body", False, True, 'json')
         if req_content_type not in ('multipart/form-data', 'multipart/mixed'):
             headers['content-type'] = req_content_type
         headers['Accept'] = '*/*'
@@ -186,7 +186,7 @@ class Bee:
         
         url = utils.generate_url(operations.BeePTZRequest, base_url, '/api/v1/{hiveId}/bee/ptz', request)
         headers = {}
-        req_content_type, data, form = utils.serialize_request_body(request, "request_body", False, True, 'json')
+        req_content_type, data, form = utils.serialize_request_body(request, operations.BeePTZRequest, "request_body", False, True, 'json')
         if req_content_type not in ('multipart/form-data', 'multipart/mixed'):
             headers['content-type'] = req_content_type
         headers['Accept'] = '*/*'
@@ -279,7 +279,7 @@ class Bee:
         
         url = utils.generate_url(operations.BeeSweepRequest, base_url, '/api/v1/{hiveId}/bee/sweep', request)
         headers = {}
-        req_content_type, data, form = utils.serialize_request_body(request, "request_body", False, True, 'json')
+        req_content_type, data, form = utils.serialize_request_body(request, operations.BeeSweepRequest, "request_body", False, True, 'json')
         if req_content_type not in ('multipart/form-data', 'multipart/mixed'):
             headers['content-type'] = req_content_type
         headers['Accept'] = '*/*'

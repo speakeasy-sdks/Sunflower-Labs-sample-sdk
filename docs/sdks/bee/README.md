@@ -28,7 +28,7 @@ import sunflower_labs_rest_api
 from sunflower_labs_rest_api.models import operations
 
 s = sunflower_labs_rest_api.SunflowerLabsRESTAPI(
-    bearer_auth="",
+    bearer_auth="<YOUR_BEARER_TOKEN_HERE>",
 )
 
 req = operations.BeeFollowRequest(
@@ -72,7 +72,7 @@ import sunflower_labs_rest_api
 from sunflower_labs_rest_api.models import operations
 
 s = sunflower_labs_rest_api.SunflowerLabsRESTAPI(
-    bearer_auth="",
+    bearer_auth="<YOUR_BEARER_TOKEN_HERE>",
 )
 
 req = operations.BeeInspectRequest(
@@ -116,7 +116,7 @@ import sunflower_labs_rest_api
 from sunflower_labs_rest_api.models import operations
 
 s = sunflower_labs_rest_api.SunflowerLabsRESTAPI(
-    bearer_auth="",
+    bearer_auth="<YOUR_BEARER_TOKEN_HERE>",
 )
 
 req = operations.BeeKillRequest(
@@ -158,7 +158,7 @@ import sunflower_labs_rest_api
 from sunflower_labs_rest_api.models import operations
 
 s = sunflower_labs_rest_api.SunflowerLabsRESTAPI(
-    bearer_auth="",
+    bearer_auth="<YOUR_BEARER_TOKEN_HERE>",
 )
 
 req = operations.BeeLandRequest(
@@ -200,7 +200,7 @@ import sunflower_labs_rest_api
 from sunflower_labs_rest_api.models import operations
 
 s = sunflower_labs_rest_api.SunflowerLabsRESTAPI(
-    bearer_auth="",
+    bearer_auth="<YOUR_BEARER_TOKEN_HERE>",
 )
 
 req = operations.BeeLandHereRequest(
@@ -242,7 +242,7 @@ import sunflower_labs_rest_api
 from sunflower_labs_rest_api.models import operations
 
 s = sunflower_labs_rest_api.SunflowerLabsRESTAPI(
-    bearer_auth="",
+    bearer_auth="<YOUR_BEARER_TOKEN_HERE>",
 )
 
 req = operations.BeePTZRequest(
@@ -287,7 +287,7 @@ import sunflower_labs_rest_api
 from sunflower_labs_rest_api.models import operations
 
 s = sunflower_labs_rest_api.SunflowerLabsRESTAPI(
-    bearer_auth="",
+    bearer_auth="<YOUR_BEARER_TOKEN_HERE>",
 )
 
 req = operations.BeePositionRequest(
@@ -328,7 +328,7 @@ import sunflower_labs_rest_api
 from sunflower_labs_rest_api.models import operations
 
 s = sunflower_labs_rest_api.SunflowerLabsRESTAPI(
-    bearer_auth="",
+    bearer_auth="<YOUR_BEARER_TOKEN_HERE>",
 )
 
 req = operations.BeeStatusRequest(
@@ -369,7 +369,7 @@ import sunflower_labs_rest_api
 from sunflower_labs_rest_api.models import operations
 
 s = sunflower_labs_rest_api.SunflowerLabsRESTAPI(
-    bearer_auth="",
+    bearer_auth="<YOUR_BEARER_TOKEN_HERE>",
 )
 
 req = operations.BeeSweepRequest(

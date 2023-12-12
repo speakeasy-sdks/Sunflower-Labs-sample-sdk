@@ -10,7 +10,7 @@ from .target import Target
 from .weather_and_flight_advisory import WeatherAndFlightAdvisory
 from sunflower_labs_rest_api import utils
 from sunflower_labs_rest_api.models import shared
-from typing import Callable, Dict, Union
+from typing import Dict
 
 class SunflowerLabsRESTAPI:
     r"""Sunflower Labs REST API: REST Bridge provides a REST API to the Sunflower Labs Home Awareness system."""
@@ -30,7 +30,7 @@ class SunflowerLabsRESTAPI:
     sdk_configuration: SDKConfiguration
 
     def __init__(self,
-                 bearer_auth: Union[str,Callable[[], str]],
+                 bearer_auth: str ,
                  server_idx: int = None,
                  server_url: str = None,
                  url_params: Dict[str, str] = None,

@@ -21,7 +21,7 @@ import sunflower_labs_rest_api
 from sunflower_labs_rest_api.models import operations
 
 s = sunflower_labs_rest_api.SunflowerLabsRESTAPI(
-    bearer_auth="",
+    bearer_auth="<YOUR_BEARER_TOKEN_HERE>",
 )
 
 req = operations.GetFlightAdvisoryStatusRequest(
@@ -62,7 +62,7 @@ import sunflower_labs_rest_api
 from sunflower_labs_rest_api.models import operations
 
 s = sunflower_labs_rest_api.SunflowerLabsRESTAPI(
-    bearer_auth="",
+    bearer_auth="<YOUR_BEARER_TOKEN_HERE>",
 )
 
 req = operations.GetWeatherStatusRequest(
