@@ -1,23 +1,10 @@
-configVersion: 1.0.0
-management:
-  docChecksum: c17f40f810bd8c7e9a0e1d603215e24a
-  docVersion: 1.4.0
-  speakeasyVersion: 1.127.0
-  generationVersion: 2.220.0
+configVersion: 2.0.0
 generation:
-  comments: {}
   sdkClassName: Sunflower-Labs-REST-API
-  repoURL: https://github.com/speakeasy-sdks/Sunflower-Labs-sample-sdk.git
   usageSnippets:
     optionalPropertyRendering: withExample
   fixes:
     nameResolutionDec2023: false
-features:
-  python:
-    core: 4.3.1
-    globalSecurity: 2.83.1
-    globalServerURLs: 2.82.1
-    methodSecurity: 2.82.0
 python:
   version: 0.4.1
   author: Sunflower-Labs
@@ -33,8 +20,6 @@ python:
       shared: models/shared
       webhooks: models/webhooks
   inputModelSuffix: input
-  installationURL: https://github.com/speakeasy-sdks/Sunflower-Labs-sample-sdk.git
   maxMethodParams: 0
   outputModelSuffix: output
   packageName: Sunflower-Labs-REST-API
-  repoSubDirectory: .
