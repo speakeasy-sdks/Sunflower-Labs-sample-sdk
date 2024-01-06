@@ -4,15 +4,15 @@ management:
   docChecksum: c17f40f810bd8c7e9a0e1d603215e24a
   docVersion: 1.4.0
   speakeasyVersion: internal
-  generationVersion: 2.225.2
-  releaseVersion: 0.4.1
-  configChecksum: 0770c467b7caf134a51de38f752f58e4
+  generationVersion: 2.228.1
+  releaseVersion: 0.4.2
+  configChecksum: 9c431d01604566336bd6f1fad7f8a290
   repoURL: https://github.com/speakeasy-sdks/Sunflower-Labs-sample-sdk.git
   repoSubDirectory: .
   installationURL: https://github.com/speakeasy-sdks/Sunflower-Labs-sample-sdk.git
 features:
   python:
-    core: 4.4.0
+    core: 4.4.1
     globalSecurity: 2.83.1
     globalServerURLs: 2.82.1
     methodSecurity: 2.82.0
