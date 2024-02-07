@@ -25,10 +25,10 @@ s = sunflower_labs_rest_api.SunflowerLabsRESTAPI(
 )
 
 req = operations.HiveRoofControlRequest(
+    hive_id='HIVE12',
     request_body=operations.HiveRoofControlRequestBody(
         action='string',
     ),
-    hive_id='HIVE12',
 )
 
 res = s.hive.hive_roof_control(req)

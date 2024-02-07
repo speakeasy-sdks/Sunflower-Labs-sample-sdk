@@ -25,6 +25,7 @@ s = sunflower_labs_rest_api.SunflowerLabsRESTAPI(
 )
 
 req = operations.TargetPositionRequest(
+    hive_id='HIVE12',
     request_body=operations.TargetPositionRequestBody(
         active=False,
         id='<ID>',
@@ -34,7 +35,6 @@ req = operations.TargetPositionRequest(
         ),
         time=dateutil.parser.isoparse('2017-07-21T17:32:28Z'),
     ),
-    hive_id='HIVE12',
 )
 
 res = s.target.target_position(req)

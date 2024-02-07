@@ -32,10 +32,10 @@ s = sunflower_labs_rest_api.SunflowerLabsRESTAPI(
 )
 
 req = operations.BeeFollowRequest(
+    hive_id='HIVE12',
     request_body=operations.BeeFollowRequestBody(
         target_id='string',
     ),
-    hive_id='HIVE12',
 )
 
 res = s.bee.bee_follow(req)
@@ -76,10 +76,10 @@ s = sunflower_labs_rest_api.SunflowerLabsRESTAPI(
 )
 
 req = operations.BeeInspectRequest(
+    hive_id='HIVE12',
     request_body=operations.BeeInspectRequestBody(
         oz_id='string',
     ),
-    hive_id='HIVE12',
 )
 
 res = s.bee.bee_inspect(req)
@@ -120,8 +120,8 @@ s = sunflower_labs_rest_api.SunflowerLabsRESTAPI(
 )
 
 req = operations.BeeKillRequest(
-    request_body=operations.BeeKillRequestBody(),
     hive_id='HIVE12',
+    request_body=operations.BeeKillRequestBody(),
 )
 
 res = s.bee.bee_kill(req)
@@ -162,8 +162,8 @@ s = sunflower_labs_rest_api.SunflowerLabsRESTAPI(
 )
 
 req = operations.BeeLandRequest(
-    request_body=operations.BeeLandRequestBody(),
     hive_id='HIVE12',
+    request_body=operations.BeeLandRequestBody(),
 )
 
 res = s.bee.bee_land(req)
@@ -204,8 +204,8 @@ s = sunflower_labs_rest_api.SunflowerLabsRESTAPI(
 )
 
 req = operations.BeeLandHereRequest(
-    request_body=operations.BeeLandHereRequestBody(),
     hive_id='HIVE12',
+    request_body=operations.BeeLandHereRequestBody(),
 )
 
 res = s.bee.bee_land_here(req)
@@ -246,11 +246,11 @@ s = sunflower_labs_rest_api.SunflowerLabsRESTAPI(
 )
 
 req = operations.BeePTZRequest(
+    hive_id='HIVE12',
     request_body=operations.BeePTZRequestBody(
         action='string',
         direction='string',
     ),
-    hive_id='HIVE12',
 )
 
 res = s.bee.bee_ptz(req)
@@ -373,10 +373,10 @@ s = sunflower_labs_rest_api.SunflowerLabsRESTAPI(
 )
 
 req = operations.BeeSweepRequest(
+    hive_id='HIVE12',
     request_body=operations.BeeSweepRequestBody(
         sweep_id='string',
     ),
-    hive_id='HIVE12',
 )
 
 res = s.bee.bee_sweep(req)

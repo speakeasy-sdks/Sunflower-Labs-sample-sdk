@@ -36,10 +36,10 @@ s = sunflower_labs_rest_api.SunflowerLabsRESTAPI(
 )
 
 req = operations.BeeFollowRequest(
+    hive_id='HIVE12',
     request_body=operations.BeeFollowRequestBody(
         target_id='string',
     ),
-    hive_id='HIVE12',
 )
 
 res = s.bee.bee_follow(req)
@@ -111,10 +111,10 @@ s = sunflower_labs_rest_api.SunflowerLabsRESTAPI(
 )
 
 req = operations.BeeFollowRequest(
+    hive_id='HIVE12',
     request_body=operations.BeeFollowRequestBody(
         target_id='string',
     ),
-    hive_id='HIVE12',
 )
 
 res = None
@@ -156,10 +156,10 @@ s = sunflower_labs_rest_api.SunflowerLabsRESTAPI(
 )
 
 req = operations.BeeFollowRequest(
+    hive_id='HIVE12',
     request_body=operations.BeeFollowRequestBody(
         target_id='string',
     ),
-    hive_id='HIVE12',
 )
 
 res = s.bee.bee_follow(req)
@@ -183,10 +183,10 @@ s = sunflower_labs_rest_api.SunflowerLabsRESTAPI(
 )
 
 req = operations.BeeFollowRequest(
+    hive_id='HIVE12',
     request_body=operations.BeeFollowRequestBody(
         target_id='string',
     ),
-    hive_id='HIVE12',
 )
 
 res = s.bee.bee_follow(req)
@@ -238,10 +238,10 @@ s = sunflower_labs_rest_api.SunflowerLabsRESTAPI(
 )
 
 req = operations.BeeFollowRequest(
+    hive_id='HIVE12',
     request_body=operations.BeeFollowRequestBody(
         target_id='string',
     ),
-    hive_id='HIVE12',
 )
 
 res = s.bee.bee_follow(req)
