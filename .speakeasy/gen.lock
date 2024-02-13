@@ -4,7 +4,7 @@ management:
   docChecksum: c17f40f810bd8c7e9a0e1d603215e24a
   docVersion: 1.4.0
   speakeasyVersion: internal
-  generationVersion: 2.250.12
+  generationVersion: 2.253.0
   releaseVersion: 0.6.0
   configChecksum: f821c738a2480042f4373de36ce48ecb
   repoURL: https://github.com/speakeasy-sdks/Sunflower-Labs-sample-sdk.git

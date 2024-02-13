@@ -37,9 +37,6 @@ s = sunflower_labs_rest_api.SunflowerLabsRESTAPI(
 
 req = operations.BeeFollowRequest(
     hive_id='HIVE12',
-    request_body=operations.BeeFollowRequestBody(
-        target_id='string',
-    ),
 )
 
 res = s.bee.bee_follow(req)
@@ -104,7 +101,7 @@ Handling errors in this SDK should largely match your expectations.  All operati
 
 ```python
 import sunflower_labs_rest_api
-from sunflower_labs_rest_api.models import operations
+from sunflower_labs_rest_api.models import errors, operations
 
 s = sunflower_labs_rest_api.SunflowerLabsRESTAPI(
     bearer_auth="<YOUR_BEARER_TOKEN_HERE>",
@@ -112,16 +109,13 @@ s = sunflower_labs_rest_api.SunflowerLabsRESTAPI(
 
 req = operations.BeeFollowRequest(
     hive_id='HIVE12',
-    request_body=operations.BeeFollowRequestBody(
-        target_id='string',
-    ),
 )
 
 res = None
 try:
     res = s.bee.bee_follow(req)
 except errors.SDKError as e:
-    print(e)  # handle exception
+    # handle exception
     raise(e)
 
 if res.status_code == 200:
@@ -157,9 +151,6 @@ s = sunflower_labs_rest_api.SunflowerLabsRESTAPI(
 
 req = operations.BeeFollowRequest(
     hive_id='HIVE12',
-    request_body=operations.BeeFollowRequestBody(
-        target_id='string',
-    ),
 )
 
 res = s.bee.bee_follow(req)
@@ -184,9 +175,6 @@ s = sunflower_labs_rest_api.SunflowerLabsRESTAPI(
 
 req = operations.BeeFollowRequest(
     hive_id='HIVE12',
-    request_body=operations.BeeFollowRequestBody(
-        target_id='string',
-    ),
 )
 
 res = s.bee.bee_follow(req)
@@ -239,9 +227,6 @@ s = sunflower_labs_rest_api.SunflowerLabsRESTAPI(
 
 req = operations.BeeFollowRequest(
     hive_id='HIVE12',
-    request_body=operations.BeeFollowRequestBody(
-        target_id='string',
-    ),
 )
 
 res = s.bee.bee_follow(req)

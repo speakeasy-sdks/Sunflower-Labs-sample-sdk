@@ -22,10 +22,6 @@ from sunflower_labs_rest_api.models import operations
 s = sunflower_labs_rest_api.SunflowerLabsRESTAPI()
 
 req = operations.AuthTokenRequest(
-    request_body=operations.AuthTokenRequestBody(
-        api_key='string',
-        hive_id='string',
-    ),
     valid_for_seconds=3600,
 )
 

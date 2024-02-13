@@ -16,7 +16,6 @@ Set or update the position of a dynamic target. Please be aware of the default t
 ### Example Usage
 
 ```python
-import dateutil.parser
 import sunflower_labs_rest_api
 from sunflower_labs_rest_api.models import operations
 
@@ -26,15 +25,6 @@ s = sunflower_labs_rest_api.SunflowerLabsRESTAPI(
 
 req = operations.TargetPositionRequest(
     hive_id='HIVE12',
-    request_body=operations.TargetPositionRequestBody(
-        active=False,
-        id='<ID>',
-        position=operations.Position(
-            latitude=7643.18,
-            longitude=9490.02,
-        ),
-        time=dateutil.parser.isoparse('2017-07-21T17:32:28Z'),
-    ),
 )
 
 res = s.target.target_position(req)
