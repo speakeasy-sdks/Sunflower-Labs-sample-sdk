@@ -30,9 +30,10 @@ req = operations.GetOZsRequest(
 
 res = s.map.get_o_zs(req)
 
-if res.status_code == 200:
+if res is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -71,9 +72,10 @@ req = operations.GetSweepsRequest(
 
 res = s.map.get_sweeps(req)
 
-if res.status_code == 200:
+if res is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters

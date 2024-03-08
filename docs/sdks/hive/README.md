@@ -30,9 +30,10 @@ req = operations.HiveRoofControlRequest(
 
 res = s.hive.hive_roof_control(req)
 
-if res.status_code == 200:
+if res is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -71,9 +72,10 @@ req = operations.HiveRoofStatusRequest(
 
 res = s.hive.hive_roof_status(req)
 
-if res.status_code == 200:
+if res is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters

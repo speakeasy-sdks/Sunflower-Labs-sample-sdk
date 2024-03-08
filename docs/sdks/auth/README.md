@@ -27,9 +27,10 @@ req = operations.AuthTokenRequest(
 
 res = s.auth.auth_token(req)
 
-if res.status_code == 200:
+if res is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters

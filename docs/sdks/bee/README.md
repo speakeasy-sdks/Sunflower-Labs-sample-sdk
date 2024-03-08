@@ -37,9 +37,10 @@ req = operations.BeeFollowRequest(
 
 res = s.bee.bee_follow(req)
 
-if res.status_code == 200:
+if res is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -78,9 +79,10 @@ req = operations.BeeInspectRequest(
 
 res = s.bee.bee_inspect(req)
 
-if res.status_code == 200:
+if res is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -119,9 +121,10 @@ req = operations.BeeKillRequest(
 
 res = s.bee.bee_kill(req)
 
-if res.status_code == 200:
+if res is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -160,9 +163,10 @@ req = operations.BeeLandRequest(
 
 res = s.bee.bee_land(req)
 
-if res.status_code == 200:
+if res is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -201,9 +205,10 @@ req = operations.BeeLandHereRequest(
 
 res = s.bee.bee_land_here(req)
 
-if res.status_code == 200:
+if res is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -242,9 +247,10 @@ req = operations.BeePTZRequest(
 
 res = s.bee.bee_ptz(req)
 
-if res.status_code == 200:
+if res is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -283,9 +289,10 @@ req = operations.BeePositionRequest(
 
 res = s.bee.bee_position(req)
 
-if res.status_code == 200:
+if res is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -324,9 +331,10 @@ req = operations.BeeStatusRequest(
 
 res = s.bee.bee_status(req)
 
-if res.status_code == 200:
+if res is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -365,9 +373,10 @@ req = operations.BeeSweepRequest(
 
 res = s.bee.bee_sweep(req)
 
-if res.status_code == 200:
+if res is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters

@@ -30,9 +30,10 @@ req = operations.GetFlightAdvisoryStatusRequest(
 
 res = s.weather_and_flight_advisory.get_flight_advisory_status(req)
 
-if res.status_code == 200:
+if res is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -71,9 +72,10 @@ req = operations.GetWeatherStatusRequest(
 
 res = s.weather_and_flight_advisory.get_weather_status(req)
 
-if res.status_code == 200:
+if res is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters

@@ -26,9 +26,9 @@ class SDKConfiguration:
     server_idx: int = 0
     language: str = 'python'
     openapi_doc_version: str = '1.4.0'
-    sdk_version: str = '0.8.0'
-    gen_version: str = '2.275.4'
-    user_agent: str = 'speakeasy-sdk/python 0.8.0 2.275.4 1.4.0 Sunflower-Labs-REST-API'
+    sdk_version: str = '0.9.0'
+    gen_version: str = '2.279.1'
+    user_agent: str = 'speakeasy-sdk/python 0.9.0 2.279.1 1.4.0 Sunflower-Labs-REST-API'
     retry_config: RetryConfig = None
     _hooks: SDKHooks = None
 

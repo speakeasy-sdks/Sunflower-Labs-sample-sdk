@@ -3,18 +3,19 @@ id: 2cbe3818-6ee7-4e44-b6fa-d22500abbe4c
 management:
   docChecksum: c17f40f810bd8c7e9a0e1d603215e24a
   docVersion: 1.4.0
-  speakeasyVersion: internal
-  generationVersion: 2.275.4
-  releaseVersion: 0.8.0
-  configChecksum: 8c730a5057ca98d0bc2ac7bd9b971815
+  speakeasyVersion: 1.204.1
+  generationVersion: 2.279.1
+  releaseVersion: 0.9.0
+  configChecksum: 586ed95ae789704c8b6d88f6a9ee3409
   repoURL: https://github.com/speakeasy-sdks/Sunflower-Labs-sample-sdk.git
   repoSubDirectory: .
   installationURL: https://github.com/speakeasy-sdks/Sunflower-Labs-sample-sdk.git
 features:
   python:
-    core: 4.5.0
+    core: 4.5.1
     globalSecurity: 2.83.4
     globalServerURLs: 2.82.1
+    responseFormat: 0.1.0
 generatedFiles:
   - src/sunflower_labs_rest_api/sdkconfiguration.py
   - src/sunflower_labs_rest_api/bee.py
@@ -24,6 +25,7 @@ generatedFiles:
   - src/sunflower_labs_rest_api/target.py
   - src/sunflower_labs_rest_api/auth.py
   - src/sunflower_labs_rest_api/sdk.py
+  - py.typed
   - pylintrc
   - setup.py
   - src/sunflower_labs_rest_api/__init__.py

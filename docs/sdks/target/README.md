@@ -29,9 +29,10 @@ req = operations.TargetPositionRequest(
 
 res = s.target.target_position(req)
 
-if res.status_code == 200:
+if res is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters

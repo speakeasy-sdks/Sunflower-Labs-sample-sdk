@@ -13,8 +13,9 @@ req = operations.BeeFollowRequest(
 
 res = s.bee.bee_follow(req)
 
-if res.status_code == 200:
+if res is not None:
     # handle response
     pass
+
 ```
 <!-- End SDK Example Usage [usage] -->
