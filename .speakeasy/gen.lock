@@ -3,10 +3,10 @@ id: 2cbe3818-6ee7-4e44-b6fa-d22500abbe4c
 management:
   docChecksum: c17f40f810bd8c7e9a0e1d603215e24a
   docVersion: 1.4.0
-  speakeasyVersion: 1.204.1
-  generationVersion: 2.279.1
-  releaseVersion: 0.9.0
-  configChecksum: 586ed95ae789704c8b6d88f6a9ee3409
+  speakeasyVersion: 1.207.1
+  generationVersion: 2.280.6
+  releaseVersion: 0.9.1
+  configChecksum: 21027a703c06a2d2ec55932545bcbb4e
   repoURL: https://github.com/speakeasy-sdks/Sunflower-Labs-sample-sdk.git
   repoSubDirectory: .
   installationURL: https://github.com/speakeasy-sdks/Sunflower-Labs-sample-sdk.git
@@ -14,7 +14,7 @@ features:
   python:
     core: 4.5.1
     globalSecurity: 2.83.4
-    globalServerURLs: 2.82.1
+    globalServerURLs: 2.82.2
     responseFormat: 0.1.0
 generatedFiles:
   - src/sunflower_labs_rest_api/sdkconfiguration.py

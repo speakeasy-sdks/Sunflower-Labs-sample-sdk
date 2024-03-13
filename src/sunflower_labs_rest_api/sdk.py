@@ -11,7 +11,7 @@ from .weather_and_flight_advisory import WeatherAndFlightAdvisory
 from sunflower_labs_rest_api import utils
 from sunflower_labs_rest_api._hooks import SDKHooks
 from sunflower_labs_rest_api.models import shared
-from typing import Callable, Dict, Union
+from typing import Callable, Dict, Optional, Union
 
 class SunflowerLabsRESTAPI:
     r"""Sunflower Labs REST API: REST Bridge provides a REST API to the Sunflower Labs Home Awareness system."""
@@ -32,14 +32,14 @@ class SunflowerLabsRESTAPI:
 
     def __init__(self,
                  bearer_auth: Union[str, Callable[[], str]],
-                 server_idx: int = None,
-                 server_url: str = None,
-                 url_params: Dict[str, str] = None,
-                 client: requests_http.Session = None,
-                 retry_config: utils.RetryConfig = None
+                 server_idx: Optional[int] = None,
+                 server_url: Optional[str] = None,
+                 url_params: Optional[Dict[str, str]] = None,
+                 client: Optional[requests_http.Session] = None,
+                 retry_config: Optional[utils.RetryConfig] = None
                  ) -> None:
         """Instantiates the SDK configuring it with the provided parameters.
-        
+
         :param bearer_auth: The bearer_auth required for authentication
         :type bearer_auth: Union[str, Callable[[], str]]
         :param server_idx: The index of the server to use for all operations
@@ -55,18 +55,24 @@ class SunflowerLabsRESTAPI:
         """
         if client is None:
             client = requests_http.Session()
-        
+
         if callable(bearer_auth):
             def security():
                 return shared.Security(bearer_auth = bearer_auth())
         else:
             security = shared.Security(bearer_auth = bearer_auth)
-        
+
         if server_url is not None:
             if url_params is not None:
                 server_url = utils.template_url(server_url, url_params)
 
-        self.sdk_configuration = SDKConfiguration(client, security, server_url, server_idx, retry_config=retry_config)
+        self.sdk_configuration = SDKConfiguration(
+            client,
+            security,
+            server_url,
+            server_idx,
+            retry_config=retry_config
+        )
 
         hooks = SDKHooks()
 
@@ -76,10 +82,11 @@ class SunflowerLabsRESTAPI:
             self.sdk_configuration.server_url = server_url
 
         # pylint: disable=protected-access
-        self.sdk_configuration._hooks=hooks
-       
+        self.sdk_configuration._hooks = hooks
+
         self._init_sdks()
-    
+
+
     def _init_sdks(self):
         self.bee = Bee(self.sdk_configuration)
         self.map = Map(self.sdk_configuration)
@@ -87,4 +94,3 @@ class SunflowerLabsRESTAPI:
         self.hive = Hive(self.sdk_configuration)
         self.target = Target(self.sdk_configuration)
         self.auth = Auth(self.sdk_configuration)
-    
